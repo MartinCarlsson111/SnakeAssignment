@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class FruitSpawner : MonoBehaviour
 {
-    GameObject fruitPrefab;
+    public GameObject fruitPrefab;
     public Vector2Int spawnBounds = new Vector2Int(10, 10);
     GameObject activeFruit = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        fruitPrefab = Resources.Load("Prefab/Fruit") as GameObject;
+        if(fruitPrefab == null)
+        {
+            fruitPrefab = Resources.Load("Prefab/Fruit") as GameObject;
+        }
     }
 
     // Update is called once per frame

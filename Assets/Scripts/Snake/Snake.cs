@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Snake : MonoBehaviour, IEnumerable, CollisionInterface
+public class Snake : MonoBehaviour, IEnumerable
 {
     public Snake next;
     new public BoxCollider2D collider;
@@ -31,10 +31,5 @@ public class Snake : MonoBehaviour, IEnumerable, CollisionInterface
         {
             next.Move(position);
         }
-    }
-
-    public void CollisionResponse(string tag, GameObject obj)
-    {
-        //tell the snake controller to do something
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fruit : MonoBehaviour, CollisionInterface
+public class Fruit : MonoBehaviour, ICollisionInterface
 {
     public FruitSpawner spawner;
     public void CollisionResponse(string tag, GameObject obj)
@@ -11,7 +11,6 @@ public class Fruit : MonoBehaviour, CollisionInterface
         Destroy(this.gameObject);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         spawner = GetComponentInParent<FruitSpawner>();
@@ -20,10 +19,5 @@ public class Fruit : MonoBehaviour, CollisionInterface
             Debug.LogError("Fruit spawned without parent fruit spawner component, destroying game object");
             Destroy(this.gameObject);
         }
-    }
-
-    void Update()
-    {
-        //animation
     }
 }

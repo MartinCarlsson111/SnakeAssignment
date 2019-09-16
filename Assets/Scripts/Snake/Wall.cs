@@ -2,13 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wall : MonoBehaviour, CollisionInterface, RegisterToWorldGrid
+public class Wall : MonoBehaviour, IRegisterToWorldGrid
 {
-    public void CollisionResponse(string tag, GameObject obj)
-    {
-
-    }
-
     public void Register()
     {
         int x = Mathf.RoundToInt(transform.position.x);

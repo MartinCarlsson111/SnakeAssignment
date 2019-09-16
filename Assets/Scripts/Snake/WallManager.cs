@@ -8,7 +8,7 @@ public class WallManager : MonoBehaviour
     public Vector2Int bounds;
 
     [SerializeField]
-    List<GameObject> walls;
+    List<GameObject> walls = new List<GameObject>(); 
 
     [ContextMenu("RemoveWalls")]
     void RemoveWalls()
@@ -62,7 +62,5 @@ public class WallManager : MonoBehaviour
         {
             Spawn();
         }
-
-
     }
 }

@@ -1761,6 +1761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5ded5c2a91e0e4897be656f34c68d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snakePrefabHead: {fileID: 0}
+  snakePrefabBody: {fileID: 0}
   updateTimer: 0.15
   lost: 0
 --- !u!4 &287133887
@@ -2006,6 +2008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6478a70fc7d510a468884e4d650ead32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fruitPrefab: {fileID: 0}
   spawnBounds: {x: 20, y: 20}
 --- !u!4 &308413369
 Transform:
@@ -3792,7 +3795,7 @@ PrefabInstance:
     - target: {fileID: 200435965484918702, guid: a4011a538a1dc5140ab2116b3b21b291,
         type: 3}
       propertyPath: chance
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4011a538a1dc5140ab2116b3b21b291, type: 3}

@@ -116,7 +116,7 @@ public class AStarPathGenerator : Singleton<AStarPathGenerator>
     //Returns true if a path could be made to the target
     //returns false if start is target
     //returns false if target is blocked
-    public bool GetPath(Vector2 start, Vector2 target, ref List<Vector2> path, int maxIter = 255)
+    public bool GetPath(Vector2 start, Vector2 target, ref List<Vector2> path, int maxIter = 400)
     {
         if (worldGridInstance == null) worldGridInstance = WorldGrid.Instance;
 
@@ -149,6 +149,7 @@ public class AStarPathGenerator : Singleton<AStarPathGenerator>
                 {
                     closed.Add(newNode);
                     targetFound = true;
+                    open.Clear();
                     break;
                 }
             }

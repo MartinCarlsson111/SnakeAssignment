@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface RegisterToWorldGrid
+public interface IRegisterToWorldGrid
 {
     void Register();
     void Unregister();

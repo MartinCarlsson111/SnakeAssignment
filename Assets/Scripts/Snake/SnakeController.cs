@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SnakeController : MonoBehaviour
 {
-    GameObject snakePrefabHead;
-    GameObject snakePrefabBody;
+    public GameObject snakePrefabHead;
+    public GameObject snakePrefabBody;
 
     public float updateTimer = 0.3f;
     float updateAccu = 0;
@@ -16,22 +16,27 @@ public class SnakeController : MonoBehaviour
     bool movementDirSet = false;
     Snake root;
     Snake tail;
-
+    Vector3 lastTailPosition;
     void Start()
     {
-        snakePrefabBody = Resources.Load("Prefab/SnakeBody") as GameObject;
-        snakePrefabHead = Resources.Load("Prefab/SnakeHead") as GameObject;
+        if(snakePrefabBody == null)
+        {
+            snakePrefabBody = Resources.Load("Prefab/SnakeBody") as GameObject;
+        }
+        if (snakePrefabHead == null)
+        {
+            snakePrefabHead = Resources.Load("Prefab/SnakeHead") as GameObject;
+        }
+          
         var go = GameObject.Instantiate(snakePrefabHead, this.transform);
         root = go.GetComponent<Snake>();
         root.next = null;
         tail = root;
-        AddSnakePart();
     }
-
 
     void AddSnakePart()
     {
-        var go = GameObject.Instantiate(snakePrefabBody, GetTailPositionOfSnake() + -moveDir, Quaternion.identity, this.transform);
+        var go = GameObject.Instantiate(snakePrefabBody, lastTailPosition, Quaternion.identity, this.transform);
         var snakeComp = go.GetComponent<Snake>();
         snakeComp.next = null;
 
@@ -42,11 +47,6 @@ public class SnakeController : MonoBehaviour
         }
         nextNode.next = snakeComp;
         tail = snakeComp;
-    }
-
-    Vector3 GetTailPositionOfSnake()
-    {
-        return tail.transform.position;
     }
 
     void TestCollision()
@@ -117,6 +117,7 @@ public class SnakeController : MonoBehaviour
             updateAccu += Time.deltaTime;
             if (updateTimer < updateAccu)
             {
+                lastTailPosition = tail.transform.position;
                 root.Move(root.transform.position + (moveDir));
                 updateAccu = 0;
                 TestCollision();
