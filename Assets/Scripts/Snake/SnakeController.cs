@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnakeController : MonoBehaviour
+public class SnakeController : MonoBehaviour, ICollisionResponse
 {
     public GameObject snakePrefabHead;
     public GameObject snakePrefabBody;
@@ -17,9 +17,18 @@ public class SnakeController : MonoBehaviour
     Snake root;
     Snake tail;
     Vector3 lastTailPosition;
+
+    Collider2D rootCollider;
+    LayerMask snakeBodyLayer;
+    LayerMask fruitLayer;
+    LayerMask wallLayer;
+
     void Start()
     {
-        if(snakePrefabBody == null)
+        snakeBodyLayer = LayerMask.NameToLayer("SnakeBody");
+        fruitLayer = LayerMask.NameToLayer("Fruit");
+        wallLayer = LayerMask.NameToLayer("Wall");
+        if (snakePrefabBody == null)
         {
             snakePrefabBody = Resources.Load("Prefab/SnakeBody") as GameObject;
         }
@@ -27,10 +36,11 @@ public class SnakeController : MonoBehaviour
         {
             snakePrefabHead = Resources.Load("Prefab/SnakeHead") as GameObject;
         }
-          
+
         var go = GameObject.Instantiate(snakePrefabHead, this.transform);
         root = go.GetComponent<Snake>();
         root.next = null;
+        rootCollider = root.GetComponent<Collider2D>();
         tail = root;
     }
 
@@ -52,31 +62,32 @@ public class SnakeController : MonoBehaviour
     void TestCollision()
     {
         var pos = new Vector2(root.transform.position.x, root.transform.position.y);
-        var size = root.collider.size * 0.3f;
+        var size = rootCollider.bounds.size * 0.3f;
 
         var hits = Physics2D.BoxCastAll(pos, size, 0, new Vector2(0,0));
         foreach(var hit in hits)
         {
-            CollisionResponse(hit.collider.tag, hit.collider.gameObject);
+            CollisionResponse(hit.collider.gameObject);
         }
     }
 
-    public void CollisionResponse(string tag, GameObject obj)
+    public void CollisionResponse(GameObject obj)
     {
-        if (tag == "SnakeBody")
+
+        if(snakeBodyLayer.value == obj.layer)
         {
             lost = true;
         }
 
-        if (tag == "Wall")
+        if (wallLayer.value == obj.layer)
         {
             lost = true;
         }
 
-        if (tag == "Fruit")
+        if (fruitLayer.value == obj.layer)
         {
             AddSnakePart();
-            obj.GetComponent<Fruit>().CollisionResponse(tag, this.gameObject);
+            obj.GetComponent<Fruit>().CollisionResponse(this.gameObject);
         }
     }
 

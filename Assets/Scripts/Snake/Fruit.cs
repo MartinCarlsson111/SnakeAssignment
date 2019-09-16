@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fruit : MonoBehaviour, ICollisionInterface
+public class Fruit : MonoBehaviour, ICollisionResponse
 {
     public FruitSpawner spawner;
-    public void CollisionResponse(string tag, GameObject obj)
+    public void CollisionResponse(GameObject obj)
     {
         spawner.FruitWasDestroyed(this.gameObject);
         Destroy(this.gameObject);

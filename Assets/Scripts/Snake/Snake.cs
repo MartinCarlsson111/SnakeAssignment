@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class Snake : MonoBehaviour, IEnumerable
 {
     public Snake next;
-    new public BoxCollider2D collider;
 
     private void Start()
     {
-        collider = GetComponent<BoxCollider2D>();
     }
 
     public IEnumerator GetEnumerator()

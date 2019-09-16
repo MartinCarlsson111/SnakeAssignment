@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9179478285441065662}
   - component: {fileID: -3011275111882779443}
   - component: {fileID: 598037899427154259}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SnakeBody
   m_TagString: SnakeBody
   m_Icon: {fileID: 0}
@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   next: {fileID: 0}
-  collider: {fileID: 0}
 --- !u!212 &-3011275111882779443
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Wall))]
+[RequireComponent(typeof(AStarAgent))]
 public class WallThatCanKillYou : MonoBehaviour
 {
     public float chance = 0.001f;
@@ -18,15 +20,6 @@ public class WallThatCanKillYou : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
         agent = GetComponent<AStarAgent>();
         wall = GetComponent<Wall>();
-
-        if(wall == null)
-        {
-            Debug.LogError("Game object did not have a wall component");
-        }
-        if(agent == null)
-        {
-            Debug.LogError("Game object did not have an agent component");
-        }
     }
 
     private void Update()
@@ -37,15 +30,10 @@ public class WallThatCanKillYou : MonoBehaviour
             var gen = UnityEngine.Random.Range(0.0f, 100.0f);
             if (gen <= chance)
             {
-                if (agent != null)
-                {
-                    agent.enabled = true;
-                }
-                if (wall != null)
-                {
-                    wall.Unregister();
-                    wall.enabled = false;
-                }
+                agent.enabled = true;
+                wall.Unregister();
+                wall.enabled = false;
+
                 if (renderer != null)
                 {
                     renderer.color = col;

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 200435965484918689}
   - component: {fileID: 200435965484918702}
   - component: {fileID: 200435965484918701}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WallThatCanKillYou
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chance: 0.0001
+  updateTimer: 1
   col: {r: 0.636, g: 0.07123199, b: 0.15612902, a: 1}
 --- !u!114 &200435965484918701
 MonoBehaviour:

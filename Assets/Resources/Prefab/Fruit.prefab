@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1949089438922622423}
   - component: {fileID: 5009297749691284603}
   - component: {fileID: 1797481338135924501}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Fruit
   m_TagString: Fruit
   m_Icon: {fileID: 0}
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7141ce30be5890143b5d92f0d593c80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawner: {fileID: 0}
 --- !u!61 &5009297749691284603
 BoxCollider2D:
   m_ObjectHideFlags: 0
